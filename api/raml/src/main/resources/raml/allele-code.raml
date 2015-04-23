@@ -1,0 +1,83 @@
+#%RAML 0.8
+title: Multiple Allele Code Service
+version: 0.1
+baseUri: http://localhost:8080/api/
+documentation: 
+  - title: Multiple Allele Code API
+    content: Service for finding, creating, and expanding multiple allele codes (MAC)
+      using the IMGT/HLA nomenclature.
+          Copyright (c) 2014-2015 National Marrow Donor Program (NMDP)
+      
+/codes:
+  description: Retrieve the collections of multiple allele code definitions.  
+    One per line with the fields {allele_specific_indicator, code, definition} separated by tabs.
+  get:
+    queryParameters:
+      after:
+        description: |
+          Only return code definitions with a code greater.  
+          If "AAA" is specified,  will not include itself or shorter codes like "ZZ". 
+      before: 
+        description: Only return code definitions with a code smaller.  
+    responses:
+      200: 
+        body:
+          text/plain:
+            example: !include ./ex-allele-codes.txt
+
+  /{code}:
+    uriParameters:
+      code:
+        description: The specific multiple allele code
+    get:
+      description: Retrieve the multiple allele code definition for the specified code  
+      responses:
+        200: 
+          body:
+            text/plain:
+/encode:
+  description: Encodes an allele list
+  post:
+    queryParameters:
+      imgtHlaRelease:
+        description: |
+          Optionally specify the IMGT/HLA Release like "3.19.0" (default is the latest release)
+        example: "3.19.0"
+    body:
+      text/plain:
+        example: "HLA-A*01:01/HLA-A*01:02"
+    responses:
+      200:
+        body:
+          text/plain:
+            example: "HLA-A*01:AB"
+      400:
+        body:
+          text/plain:
+            example: "Invalid allele: HLA-B*01:01"
+
+/decode:
+  description: Decodes an allele code designation
+  get:
+    queryParameters:
+      imgtHlaRelease:
+        description: |
+          Optionally specify the IMGT/HLA Release like "3.19.0" (default is the latest release)
+        example: "3.19.0"
+      typing:
+        description: An allele code designation in the format locus*firstField:alleleCode
+        example: "HLA-A*01:AB"
+      expand:
+        description: flag indicating whether to expand short allele names into their sets of full IMGT/HLA names.
+        type: boolean
+        default: false
+    responses:
+      200:
+        body:
+          text/plain:
+            example: "HLA-A*01:01/HLA-A*01:02"
+      400:
+        body:
+          text/plain:
+            example: "Invalid allele code: ONE"
+
