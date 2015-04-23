@@ -23,7 +23,7 @@
   <parent>
     <groupId>org.nmdp.b12s.mac.api</groupId>
     <artifactId>mac-api-parent</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
   </parent>
 
   <artifactId>mac-api-raml</artifactId>
