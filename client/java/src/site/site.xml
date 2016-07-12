@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+
+    This file is part of project mac-client from the multiple-allele-code repository.
+
+    mac-client is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    mac-client is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with mac-client.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<project name="security-http-sig" xmlns="http://maven.apache.org/DECORATION/1.7.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.7.0 https://maven.apache.org/xsd/decoration-1.7.0.xsd">
+  <body>
+    <links>
+      <item name="Releases"
+        href="http://build.nmdp.org/site/bio-security/security-proxy" />
+    </links>
+
+    <menu name="mac-client">
+      <item name="Introduction" href="index.html" />
+      <item name="SVN"
+        href="http://svn.nmdp.org/repos/dev/bioinformatics/projects/security/security-proxy/" />
+      <item name="Sites"
+        href="http://build.nmdp.org/site/bio-security/security-proxy" />
+    </menu>
+
+    <menu ref="reports" />
+
+  </body>
+</project>
