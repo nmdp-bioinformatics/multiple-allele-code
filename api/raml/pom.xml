@@ -52,24 +52,40 @@
   <build>
     <plugins>
       <plugin>
-        <!-- Released versions at https://repository-master.mulesoft.org/nexus/content/repositories/releases/ -->
         <groupId>org.raml.plugins</groupId>
         <artifactId>raml-jaxrs-maven-plugin</artifactId>
-        <version>1.3.3</version>
+        <version>1.3.4</version>
         <configuration>
           <sourceDirectory>${basedir}/src/main/resources/raml</sourceDirectory>
           <basePackageName>${gen.package}</basePackageName>
           <jaxrsVersion>2.0</jaxrsVersion>
           <useJsr303Annotations>false</useJsr303Annotations>
           <jsonMapper>jackson2</jsonMapper>
-          <removeOldOutput>true</removeOldOutput>
         </configuration>
         <executions>
-          <execution>
+           <execution>
+            <id>client-generation</id>
             <phase>generate-sources</phase>
             <goals>
               <goal>generate</goal>
             </goals>
+            <configuration>
+              <basePackageName>${gen.package}</basePackageName>
+              <removeOldOutput>true</removeOldOutput>
+              <generateClientProxy>true</generateClientProxy>
+            </configuration>
+          </execution>
+          <execution>
+            <id>server-generation</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <basePackageName>${gen.package}.server</basePackageName>
+              <removeOldOutput>false</removeOldOutput>
+              <generateClientProxy>false</generateClientProxy>
+            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -155,10 +171,15 @@
                 </goals>
                 <configuration>
                   <executable>/usr/local/bin/raml2html</executable>
+                  <environmentVariables>
+                    <PATH>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</PATH>
+                  </environmentVariables>
                   <arguments>
+                    <argument>-i</argument>
                     <argument>src/main/resources/raml/allele-code.raml</argument>
+                    <argument>-o</argument>
+                    <argument>target/allele-code.html</argument>
                   </arguments>
-                  <outputFile>target/html/allele-code.html</outputFile>
                 </configuration>
               </execution>
               <execution>
@@ -171,7 +192,7 @@
                   <executable>sed</executable>
                   <arguments>
                     <argument>s/http://g</argument>
-                    <argument>target/html/allele-code.html</argument>
+                    <argument>target/allele-code.html</argument>
                   </arguments>
                   <outputFile>target/classes/raml/allele-code.html</outputFile>
                 </configuration>
