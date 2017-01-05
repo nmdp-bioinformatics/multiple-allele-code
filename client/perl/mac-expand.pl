@@ -29,7 +29,7 @@ sub expand {
     my @ret;
     my $ua = new LWP::UserAgent;
     $ua->agent("AlleleCodeClient/0.1");
-    my $url = "http://emmes-dev.nmdp.org:8080/ac/api/decode?imgtHlaRelease=3.15.0&expand=true&typing=$typing";
+    my $url = "https://hml.nmdp.org/mac/api/decode?imgtHlaRelease=3.25.0&expand=true&typing=$typing";
     my $response = $ua->request(new HTTP::Request("GET", $url));
     my $code = $response->code;
     my $content = $response->content;

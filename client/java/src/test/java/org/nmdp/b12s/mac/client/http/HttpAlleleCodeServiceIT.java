@@ -29,7 +29,7 @@ public class HttpAlleleCodeServiceIT extends AbstractMacServiceTests {
 
     @BeforeClass
     public static void initClass() {
-        macService =  new HttpAlleleCodeService("https://mac.b12x.org/api");
+        macService =  new HttpAlleleCodeService("https://hml.nmdp.org/mac/api");
     }
     
     @AfterClass
