@@ -53,11 +53,11 @@ public class TextClientMain implements Closeable {
         if (args.length < 1) {
             System.err.println("Usage: [--url=<baseurl>] [--hla=<version>] ['expand'|'encode'] typings|files...");
             System.err.println("\tversion is the IMGT/HLA Release version like 3.19.0 or 3.22.0");
-            System.err.println("Sample args:\t  --url=https://mac.b12x.org/api --hla=3.22.0 expand HLA-A*01:MN");
+            System.err.println("Sample args:\t  --url=https://hml.nmdp.org/mac/api --hla=3.22.0 expand HLA-A*01:MN");
             System.exit(1);
         }
         int pos = 0;
-        try (TextClientMain client = new TextClientMain("https://mac.b12x.org/api")) {
+        try (TextClientMain client = new TextClientMain("https://hml.nmdp.org/mac/api")) {
             while (pos < args.length) {
                 String arg = args[pos++];
                 File f = new File(arg);

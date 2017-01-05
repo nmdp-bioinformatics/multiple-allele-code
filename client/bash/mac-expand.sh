@@ -16,7 +16,7 @@
 # along with mac-client-parent.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-mac_url=${MAC_URL-https://mac.b12x.org/api}
+mac_url=${MAC_URL-https://hml.nmdp.org/mac/api}
 for arg in $*
 do
   result=$(curl -s "$mac_url/decode?typing=$arg&expand=true")
